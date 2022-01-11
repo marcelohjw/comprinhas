@@ -1,9 +1,11 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cart';
+import CustomHeaderButton from '../../components/UI/HeaderButton';
 
 
 const ProductsOverviewScreen = props => {
@@ -30,7 +32,12 @@ const ProductsOverviewScreen = props => {
 };
 
 ProductsOverviewScreen.navigationOptions = {
-    headerTitle: 'Produtos'
+    headerTitle: 'Produtos',
+    headerRight: () =>  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                            <Item title='cart' iconName='ios-cart' onPress={() => {
+                                console.log('Cart press');
+                            }} />
+                        </HeaderButtons>
 };
 
 export default ProductsOverviewScreen;
