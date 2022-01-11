@@ -31,13 +31,15 @@ const ProductsOverviewScreen = props => {
             />
 };
 
-ProductsOverviewScreen.navigationOptions = {
+ProductsOverviewScreen.navigationOptions = navData => {
+    return {
     headerTitle: 'Produtos',
     headerRight: () =>  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                             <Item title='cart' iconName='ios-cart' onPress={() => {
-                                console.log('Cart press');
+                                navData.navigation.navigate('Cart')
                             }} />
                         </HeaderButtons>
+    };
 };
 
 export default ProductsOverviewScreen;
