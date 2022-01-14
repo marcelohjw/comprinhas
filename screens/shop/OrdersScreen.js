@@ -4,17 +4,21 @@ import { useSelector } from 'react-redux';
 
 import CustomHeaderButton from '../../components/UI/HeaderButton';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import OrderItem from '../../components/shop/OrderItem';
 
 
 const OrdersScreen = props => {
     const orders = useSelector(state => state.orders.orders);
 
     return (
-        <View style={styles.screen}>
+        <View>
             <FlatList 
                 data={orders}
                 keyExtractor={item => item.id} 
-                renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
+                renderItem={itemData => <OrderItem 
+                                            amount={itemData.item.totalAmount}
+                                            date={itemData.item.readableDate} 
+                                        />}
             />
         </View>
     );
@@ -31,12 +35,5 @@ OrdersScreen.navigationOptions = navData => {
     };
 };
 
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
 
 export default OrdersScreen;
