@@ -20,7 +20,7 @@ const OrdersScreen = props => {
 
 OrdersScreen.navigationOptions = navData => {
     return {
-        headerTitle: 'Suas compras',
+        headerTitle: 'Compras Efetuadas',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                             <Item title='menu' iconName='ios-menu' onPress={() => {
                                 navData.navigation.toggleDrawer();
