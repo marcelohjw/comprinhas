@@ -45,8 +45,18 @@ const OrdersNavigator = createStackNavigator({
 
 
 const ShopNavigator = createDrawerNavigator({
-    Products: ProductsNavigator,
-    Orders: OrdersNavigator
+    Products: {
+        screen: ProductsNavigator,
+        navigationOptions: {
+            title: 'Produtos'
+        }
+    },
+    Orders: {
+        screen: OrdersNavigator,
+        navigationOptions: {
+            title: 'Compras Efetuadas'
+        }
+    }
 }, {
     contentOptions: {
         activeTintColor: Colors.primary
