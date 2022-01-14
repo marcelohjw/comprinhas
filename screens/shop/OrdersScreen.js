@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import CustomHeaderButton from '../../components/UI/HeaderButton';
@@ -10,11 +10,13 @@ const OrdersScreen = props => {
     const orders = useSelector(state => state.orders.orders);
 
     return (
-        <FlatList 
-            data={orders}
-            keyExtractor={item => item.id} 
-            renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
-        />
+        <View style={styles.screen}>
+            <FlatList 
+                data={orders}
+                keyExtractor={item => item.id} 
+                renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
+            />
+        </View>
     );
 };
 
@@ -28,5 +30,13 @@ OrdersScreen.navigationOptions = navData => {
                         </HeaderButtons>
     };
 };
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 
 export default OrdersScreen;
