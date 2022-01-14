@@ -2,20 +2,20 @@ import Product from '../models/product';
 
 const PRODUCTS = [
   new Product(
-    'p1',
-    'u1',
-    'Camisa Vermelha',
-    'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
-    'Uma camisa vermelha, perfeita para qualquer dia.',
-    149.99
+    'p7',
+    'u4',
+    'Novo BMW 2022',
+    'https://quatrorodas.abril.com.br/wp-content/uploads/2021/07/2022-BMW-2-Series-Coupe-M240i-230i-4-e1625617450128.jpg?quality=70&strip=info',
+    "Com essa linda BMW você conseguirá  ir de Natal a Brasília em 7 segundos.",
+    400000.00
   ),
   new Product(
-    'p2',
-    'u1',
-    'Carpete Azul',
-    'https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    'Combina com sua camisa vermelha perfeitamente. Apenas para o chão. Não vestir.',
-    99.99
+    'p8',
+    'u4',
+    'Conhecer a Kylie Janner',
+    'https://capricho.abril.com.br/wp-content/uploads/2019/08/kylie-jenner-1.jpg',
+    "Um dia para você viajar até os EUA e conhecer a estrela Kylie Janner!",
+    25000.00
   ),
   new Product(
     'p3',
@@ -34,6 +34,14 @@ const PRODUCTS = [
     65.99
   ),
   new Product(
+    'p9',
+    'u4',
+    'Macbook Pro 2021',
+    'https://cdn.pocket-lint.com/r/s/970x/assets/images/158839-laptops-review-apple-macbook-pro-14-inch-review-image2-ribxgzs9jt.jpg'
+    ,"Novinho em folha saído direto da fábrica na tailândia e entregaremos em sua casa!",
+    45000.00
+  ),
+  new Product(
     'p5',
     'u3',
     'Power Book',
@@ -48,6 +56,22 @@ const PRODUCTS = [
     'https://cdn.pixabay.com/photo/2015/10/03/02/14/pen-969298_1280.jpg',
     "Com essa combinação com certeza uma história incrível será criada.",
     29.99
+  ),
+  new Product(
+    'p1',
+    'u1',
+    'Camisa Vermelha',
+    'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+    'Uma camisa vermelha, perfeita para qualquer dia.',
+    149.99
+  ),
+  new Product(
+    'p2',
+    'u1',
+    'Carpete Azul',
+    'https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'Combina com sua camisa vermelha perfeitamente. Apenas para o chão. Não vestir.',
+    99.99
   )
 ];
 
