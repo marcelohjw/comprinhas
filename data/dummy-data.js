@@ -30,7 +30,7 @@ const PRODUCTS = [
     'u9',
     'Harrison a galinha',
     'http://pm1.narvii.com/6761/a6e3f28e88d8e638876101f882ac2f6caa5bd2a3v2_00.jpg',
-    "Harrison te deixará seguro com seu par de 38s.",
+    "Harrison te deixará seguro com seu par de 38.",
     42000.00
   ),
   new Product(
