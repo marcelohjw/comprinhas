@@ -18,6 +18,22 @@ const PRODUCTS = [
     25000.00
   ),
   new Product(
+    'p10',
+    'u3',
+    'Touro Ouros Montes',
+    'https://media.seudinheiro.com/uploads/2021/11/Touro-de-Ouro-628x353.jpg',
+    "Com esse touro valioso sua fazenda estará protegida!",
+    80000.00
+  ),
+  new Product(
+    'p11',
+    'u9',
+    'Harrison a galinha',
+    'http://pm1.narvii.com/6761/a6e3f28e88d8e638876101f882ac2f6caa5bd2a3v2_00.jpg',
+    "Harrison te deixará seguro com seu par de 38.",
+    42000.00
+  ),
+  new Product(
     'p3',
     'u2',
     'Caneca de Café',
