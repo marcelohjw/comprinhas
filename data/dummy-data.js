@@ -11,7 +11,7 @@ const PRODUCTS = [
   ),
   new Product(
     'p8',
-    'u4',
+    'u1',
     'Conhecer a Kylie Janner',
     'https://capricho.abril.com.br/wp-content/uploads/2019/08/kylie-jenner-1.jpg',
     "Um dia para você viajar até os EUA e conhecer a estrela Kylie Janner!",

@@ -33,7 +33,7 @@ const ProductsOverviewScreen = props => {
 
 ProductsOverviewScreen.navigationOptions = navData => {
     return {
-    headerTitle: 'Produtos',
+    headerTitle: 'Todos os Produtos',
     headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
                         <Item title='menu' iconName='ios-menu' onPress={() => {
                             navData.navigation.toggleDrawer();
