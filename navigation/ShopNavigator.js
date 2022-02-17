@@ -3,6 +3,8 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
+
+import EditProductScreen from '../screens/user/EditProductScreen';
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 import CartScreen from '../screens/shop/CartScreen';
@@ -44,9 +46,12 @@ const OrdersNavigator = createStackNavigator({
     defaultNavigationOptions: defaultNavigatorOptions
 });
 
-const AdminNavigator = createStackNavigator({
-    UserProducts: UserProductsScreen
-}, {
+const AdminNavigator = createStackNavigator(
+    {
+    UserProducts: UserProductsScreen,
+    EditProduct: EditProductScreen
+    }, 
+    {
     navigationOptions: {
         drawerIcon: drawerConfig => <Ionicons name='ios-create' size={23} color={drawerConfig.tintColor} />
     },
