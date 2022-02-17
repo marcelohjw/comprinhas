@@ -54,7 +54,12 @@ UserProductsScreen.navigationOptions = navData => {
                         <Item title='menu' iconName='ios-menu' onPress={() => {
                             navData.navigation.toggleDrawer();
                         }} />
-                    </HeaderButtons>
+                    </HeaderButtons>,
+        headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                            <Item title='adicionar' iconName='ios-create' onPress={() => {
+                                navData.navigation.navigate('EditProduct');
+                            }} />
+                        </HeaderButtons>
     }
 };
 

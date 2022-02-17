@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 
 EditProductScreen.navigationOptions = navData => {
     return {
-        headerTitle: 'Editar',
+        headerTitle: 'Produto',
     }
 };
 
