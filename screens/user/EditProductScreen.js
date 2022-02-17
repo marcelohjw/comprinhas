@@ -20,12 +20,12 @@ const EditProductScreen = props => {
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
     const submitHandler = useCallback(() => {
-        props.navigation.goBack();
         if (editedProduct) {
             dispatch(productsActions.updateProduct(prodId, title, description, image));
         } else {
             dispatch(productsActions.createProduct(title, description, image, +price));
         };
+        props.navigation.goBack();
     }, [dispatch, prodId, title, description, image, price]);
 
     useEffect(() => {
