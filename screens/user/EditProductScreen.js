@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -16,6 +16,14 @@ const EditProductScreen = props => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
+
+    const submitHandler = useCallback(() => {
+        console.log('Adicionar Produto com o Handler!');
+    }, []);
+
+    useEffect(() => {
+        props.navigation.setParams({ submit: submitHandler });
+    }, [submitHandler]);
   
 
     return (
@@ -60,12 +68,12 @@ const EditProductScreen = props => {
 };
 
 EditProductScreen.navigationOptions = navData => {
+    const submitFunc = navData.navigation.getParam('submit');
+
     return {
         headerTitle: navData.navigation.getParam('productId') ? 'Editar Produto' : 'Adicionar Produto',
         headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                                <Item title='salvar' iconName='ios-checkmark' onPress={() => {
-                                    console.log('Adicionar Produto');
-                                }} />
+                                <Item title='salvar' iconName='ios-checkmark' onPress={submitFunc} />
                             </HeaderButtons>
     }
 };
