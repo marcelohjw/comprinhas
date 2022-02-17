@@ -7,7 +7,7 @@ const PRODUCTS = [
     'Novo BMW 2022',
     'https://quatrorodas.abril.com.br/wp-content/uploads/2021/07/2022-BMW-2-Series-Coupe-M240i-230i-4-e1625617450128.jpg?quality=70&strip=info',
     "Com essa linda BMW você conseguirá  ir de Natal a Brasília em 7 segundos.",
-    400000.00
+    400000.98
   ),
   new Product(
     'p8',
@@ -15,7 +15,7 @@ const PRODUCTS = [
     'Conhecer a Kylie Janner',
     'https://capricho.abril.com.br/wp-content/uploads/2019/08/kylie-jenner-1.jpg',
     "Um dia para você viajar até os EUA e conhecer a estrela Kylie Janner!",
-    25000.00
+    25000.43
   ),
   new Product(
     'p10',
@@ -23,7 +23,7 @@ const PRODUCTS = [
     'Touro Ouros Montes',
     'https://media.seudinheiro.com/uploads/2021/11/Touro-de-Ouro-628x353.jpg',
     "Com esse touro valioso sua fazenda estará protegida!",
-    80000.00
+    80000.55
   ),
   new Product(
     'p11',
@@ -31,7 +31,7 @@ const PRODUCTS = [
     'Harrison a galinha',
     'http://pm1.narvii.com/6761/a6e3f28e88d8e638876101f882ac2f6caa5bd2a3v2_00.jpg',
     "Harrison te deixará seguro com seu par de 38",
-    42000.00
+    42000.22
   ),
   new Product(
     'p3',
@@ -55,7 +55,7 @@ const PRODUCTS = [
     'Macbook Pro 2021',
     'https://cdn.pocket-lint.com/r/s/970x/assets/images/158839-laptops-review-apple-macbook-pro-14-inch-review-image2-ribxgzs9jt.jpg'
     ,"Novinho em folha saído direto da fábrica na tailândia e entregaremos em sua casa!",
-    45000.00
+    45000.99
   ),
   new Product(
     'p5',
