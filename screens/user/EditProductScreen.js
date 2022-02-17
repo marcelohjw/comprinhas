@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import CustomHeaderButton from '../../components/UI/HeaderButton'; 
+import CustomHeaderButton from '../../components/UI/HeaderButton';
+import * as productsActions from '../../store/actions/products';
 
 const EditProductScreen = props => {
     const prodId = props.navigation.getParam('productId');
     const editedProduct = useSelector(state => 
         state.products.userProducts.find(prod => prod.id === prodId)
     );
+
+    const dispatch = useDispatch();
     
     const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
     const [image, setImage] = useState(editedProduct ? editedProduct.imageUrl : '');
@@ -18,13 +21,16 @@ const EditProductScreen = props => {
 
 
     const submitHandler = useCallback(() => {
-        console.log('Adicionar Produto com o Handler!');
-    }, []);
+        if (editedProduct) {
+            dispatch(productsActions.updateProduct(prodId, title, description, image));
+        } else {
+            dispatch(productsActions.createProduct(title, description, image, +price));
+        };
+    }, [dispatch, prodId, title, description, image, price]);
 
     useEffect(() => {
         props.navigation.setParams({ submit: submitHandler });
     }, [submitHandler]);
-  
 
     return (
         <ScrollView>
@@ -34,7 +40,7 @@ const EditProductScreen = props => {
                     <TextInput 
                         style={styles.input}
                         value={title}
-                        onChange={text => setTitle(text)}
+                        onChangeText={text => setTitle(text)}
                     />
                 </View>
                 <View style={styles.formControl}>
@@ -42,7 +48,7 @@ const EditProductScreen = props => {
                     <TextInput 
                         style={styles.input}
                         value={image}
-                        onChange={text => setImage(text)}
+                        onChangeText={text => setImage(text)}
                     />
                 </View>
                 {editedProduct ? null : (
@@ -51,7 +57,7 @@ const EditProductScreen = props => {
                         <TextInput 
                             style={styles.input}
                             value={price}
-                            onChange={text => setPrice(text)}
+                            onChangeText={text => setPrice(text)}
                         />
                     </View>)}
                 <View style={styles.formControl}>
@@ -59,7 +65,7 @@ const EditProductScreen = props => {
                     <TextInput 
                         style={styles.input}
                         value={description}
-                        onChange={text => setDescription(text)}
+                        onChangeText={text => setDescription(text)}
                     />
                 </View>
             </View>
