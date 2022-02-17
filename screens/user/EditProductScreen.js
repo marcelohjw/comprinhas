@@ -19,8 +19,8 @@ const EditProductScreen = props => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
-
     const submitHandler = useCallback(() => {
+        props.navigation.goBack();
         if (editedProduct) {
             dispatch(productsActions.updateProduct(prodId, title, description, image));
         } else {
