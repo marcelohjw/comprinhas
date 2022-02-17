@@ -1,27 +1,62 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet } from 'react-native';
+
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../../components/UI/HeaderButton'; 
 
 const EditProductScreen = props => {
     return (
-        <View style={styles.Main}>
-            <Text>The Edit Product Screen!</Text>
-        </View>
+        <ScrollView>
+            <View style={styles.form}>
+                <View style={styles.formControl}>
+                    <Text style={styles.label}>Nome</Text>
+                    <TextInput style={styles.input}/>
+                </View>
+                <View style={styles.formControl}>
+                    <Text style={styles.label}>Imagem</Text>
+                    <TextInput style={styles.input}/>
+                </View>
+                <View style={styles.formControl}>
+                    <Text style={styles.label}>Preço</Text>
+                    <TextInput style={styles.input}/>
+                </View>
+                <View style={styles.formControl}>
+                    <Text style={styles.label}>Descrição</Text>
+                    <TextInput style={styles.input}/>
+                </View>
+            </View>
+        </ScrollView>
     );
 };
 
-const styles = StyleSheet.create({
-    Main: {
-        flex: 1,
-        flexDirection: 'row',
-        textAlign: 'center',
-        justifyContent: 'center',
-    }
-});
-
 EditProductScreen.navigationOptions = navData => {
     return {
-        headerTitle: 'Produto',
+        headerTitle: navData.navigation.getParam('productId') ? 'Editar Produto' : 'Adicionar Produto',
+        headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                                <Item title='salvar' iconName='ios-checkmark' onPress={() => {
+                                    console.log('Adicionar Produto');
+                                }} />
+                            </HeaderButtons>
     }
 };
+
+const styles = StyleSheet.create({
+    form: {
+        margin: 20
+    },
+    formControl: {
+        width: '100%'
+    },
+    label: {
+        fontFamily: 'open-sans-bold',
+        marginVertical: 8
+    },
+    input: {
+        paddingHorizontal: 2,
+        paddingVertical: 5,
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 1
+    }
+});
 
 export default EditProductScreen;
