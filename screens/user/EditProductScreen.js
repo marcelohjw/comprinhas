@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useReducer } from 'react';
 import { View, ScrollView, Text, TextInput, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Input from '../../components/UI/Input';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
@@ -129,14 +130,13 @@ const EditProductScreen = props => {
                             keyboardType='decimal-pad'
                         />
                     </View>)}
-                <View style={styles.formControl}>
-                    <Text style={styles.label}>Descrição</Text>
-                    <TextInput 
-                        style={styles.input}
+                    <Input 
+                        label='TestOne'
                         value={formState.inputValues.description}
                         onChangeText={textChangeHandler.bind(this, 'description')}
-                    />
-                </View>
+                        keyboardType='default'
+                        />
+                
             </View>
         </ScrollView>
     );
