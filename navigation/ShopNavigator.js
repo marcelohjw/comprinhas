@@ -75,7 +75,7 @@ const ShopNavigator = createDrawerNavigator({
     Admin: {
         screen: AdminNavigator,
         navigationOptions: {
-            title: 'Produtos do Usuário'
+            title: 'Área do Administrador'
         }
     }
 }, {
