@@ -43,13 +43,13 @@ const EditProductScreen = props => {
     const [formState, dispatchFormState] = useReducer(formReducer, {
         inputValues: {
             title: editedProduct ? editedProduct.title : '',
-            image: editedProduct ? editedProduct.imageUrl : '',
+            imageUrl: editedProduct ? editedProduct.imageUrl : '',
             description: editedProduct ? editedProduct.description : '',
             price: ''
         }, 
         inputValidities: {
             title: editedProduct ? true : false,
-            image: editedProduct ? true : false,
+            imageUrl: editedProduct ? true : false,
             description: editedProduct ? true : false,
             price: editedProduct ? true : false
         },
@@ -68,12 +68,12 @@ const EditProductScreen = props => {
                 prodId, 
                 formState.inputValues.title, 
                 formState.inputValues.description, 
-                formState.inputValues.image));
+                formState.inputValues.imageUrl));
         } else {
             dispatch(productsActions.createProduct(
                 formState.inputValues.title, 
                 formState.inputValues.description, 
-                formState.inputValues.image, 
+                formState.inputValues.imageUrl, 
                 +formState.inputValues.price));
         };
         props.navigation.goBack();
@@ -112,13 +112,13 @@ const EditProductScreen = props => {
                         required
                     />
                     <Input
-                        id='image'
+                        id='imageUrl'
                         label='Imagem'
                         errorText='Coloque o link de uma imagem válida!' 
                         keyboardType='default'
                         returnKeyType='next'
                         onInputChange={inputChangeHandler}
-                        initialValue={editedProduct ? editedProduct.image : ''}
+                        initialValue={editedProduct ? editedProduct.imageUrl : ''}
                         initiallyValid={!!editedProduct}
                         required
                     />
