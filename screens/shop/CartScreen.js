@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, Button, StyleSheet, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
@@ -9,6 +9,8 @@ import * as cartActions from '../../store/actions/cart';
 import * as orderActions from '../../store/actions/orders'
 
 const CartScreen = props => {
+    const [orderLoading, setOrderLoading] = useState(false);
+
     const cartAmount = useSelector(state => state.cart.totalAmount);
     const cartItems = useSelector(state => {
         const transformedCartItems = [];
@@ -25,6 +27,21 @@ const CartScreen = props => {
     });
     const dispatch = useDispatch();
 
+    const sendOrderHandler = async () => {
+        setOrderLoading(true);
+        await dispatch(orderActions.addOrder(cartItems, cartAmount));
+        setOrderLoading(false);
+        props.navigation.navigate('Orders');
+    };
+
+    if (orderLoading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator size={'large'} color={Colors.primary}/>
+            </View>
+        );
+    }
+
     return (
         <View style={styles.screen}>
             <Card style={styles.summary}>
@@ -35,10 +52,7 @@ const CartScreen = props => {
                     color={Colors.secondary} 
                     title='Comprar' 
                     disabled={cartItems.length === 0}
-                    onPress={() => {
-                        dispatch(orderActions.addOrder(cartItems, cartAmount));
-                        props.navigation.navigate('Orders');
-                    }}
+                    onPress={sendOrderHandler}
                 />
             </Card>
             <FlatList 
@@ -77,6 +91,11 @@ const styles = StyleSheet.create({
     },
     amount: {
         color: Colors.primary
+    },
+    centered: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
