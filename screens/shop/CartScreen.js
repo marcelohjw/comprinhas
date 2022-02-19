@@ -34,13 +34,6 @@ const CartScreen = props => {
         props.navigation.navigate('Orders');
     };
 
-    if (orderLoading) {
-        return (
-            <View style={styles.centered}>
-                <ActivityIndicator size={'large'} color={Colors.primary}/>
-            </View>
-        );
-    }
 
     return (
         <View style={styles.screen}>
@@ -48,12 +41,14 @@ const CartScreen = props => {
                 <Text style={styles.summaryText}>
                     Total: <Text style={styles.amount}>R${Math.round(cartAmount.toFixed(2) * 100 / 100)}</Text>
                 </Text>
+                {orderLoading ? <ActivityIndicator size={'small'} color={Colors.primary}/> :
                 <Button 
                     color={Colors.secondary} 
                     title='Comprar' 
                     disabled={cartItems.length === 0}
                     onPress={sendOrderHandler}
                 />
+            }
             </Card>
             <FlatList 
                 data={cartItems} 
