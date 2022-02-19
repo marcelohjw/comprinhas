@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useReducer } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Input from '../../components/UI/Input';
@@ -93,55 +93,61 @@ const EditProductScreen = props => {
     }, [dispatchFormState]);
 
     return (
-        <ScrollView>
-            <View style={styles.form}>
-                <Input
-                    id='title'
-                    label='Nome'
-                    errorText='Coloque um texto válido!' 
-                    keyboardType='default'
-                    returnKeyType='next'
-                    onInputChange={inputChangeHandler}
-                    initialValue={editedProduct ? editedProduct.title : ''}
-                    initiallyValid={!!editedProduct}
-                    required
-                />
-                <Input
-                    id='image'
-                    label='Imagem'
-                    errorText='Coloque o link de uma imagem válida!' 
-                    keyboardType='default'
-                    returnKeyType='next'
-                    onInputChange={inputChangeHandler}
-                    initialValue={editedProduct ? editedProduct.image : ''}
-                    initiallyValid={!!editedProduct}
-                    required
-                />
-                {editedProduct ? null : (
+        <KeyboardAvoidingView 
+            style={{flex: 1}}
+            behavior='padding'
+            keyboardVerticalOffset={100}
+        >
+            <ScrollView>
+                <View style={styles.form}>
                     <Input
-                        id='price'
-                        label='Preço'
-                        errorText='Coloque um preço válido!' 
-                        keyboardType='decimal-pad'
-                        onInputChange={inputChangeHandler}
+                        id='title'
+                        label='Nome'
+                        errorText='Coloque um texto válido!' 
+                        keyboardType='default'
                         returnKeyType='next'
-                        required
-                        min={0}
-                    />)}
-                    <Input 
-                        id='description'
-                        label='Descrição'
-                        value={formState.inputValues.description}
-                        errorText='Coloque uma descrição válida!'
                         onInputChange={inputChangeHandler}
-                        initialValue={editedProduct ? editedProduct.description : ''} 
-                        multiline
+                        initialValue={editedProduct ? editedProduct.title : ''}
+                        initiallyValid={!!editedProduct}
                         required
-                        minLength={5}
                     />
-                
-            </View>
-        </ScrollView>
+                    <Input
+                        id='image'
+                        label='Imagem'
+                        errorText='Coloque o link de uma imagem válida!' 
+                        keyboardType='default'
+                        returnKeyType='next'
+                        onInputChange={inputChangeHandler}
+                        initialValue={editedProduct ? editedProduct.image : ''}
+                        initiallyValid={!!editedProduct}
+                        required
+                    />
+                    {editedProduct ? null : (
+                        <Input
+                            id='price'
+                            label='Preço'
+                            errorText='Coloque um preço válido!' 
+                            keyboardType='decimal-pad'
+                            onInputChange={inputChangeHandler}
+                            returnKeyType='next'
+                            required
+                            min={0}
+                        />)}
+                        <Input 
+                            id='description'
+                            label='Descrição'
+                            value={formState.inputValues.description}
+                            errorText='Coloque uma descrição válida!'
+                            onInputChange={inputChangeHandler}
+                            initialValue={editedProduct ? editedProduct.description : ''} 
+                            multiline
+                            required
+                            minLength={5}
+                        />
+                    
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
