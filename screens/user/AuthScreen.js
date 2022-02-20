@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useState, useReducer, useCallback } from 'react';
 import { ScrollView, Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
@@ -35,6 +35,7 @@ const formReducer = (state, action) => {
 
 
 const AuthScreen = props => {
+    const [isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch();
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -49,13 +50,21 @@ const AuthScreen = props => {
         formIsValid: false
     });
 
-    const signupHandler = () => {
-        dispatch(
-        authActions.signup(
-            formState.inputValues.email,
-            formState.inputValues.password
-        )
-        );
+    const authHandler = () => {
+        let action;
+        if (isSignup) {
+            action = authActions.signup(
+                formState.inputValues.email,
+                formState.inputValues.password
+            );
+            
+        } else {
+            action = authActions.login(
+                formState.inputValues.email,
+                formState.inputValues.password
+            );
+        }
+        dispatch(action);
     };
 
     const inputChangeHandler = useCallback(
@@ -103,16 +112,18 @@ const AuthScreen = props => {
                         />
                         <View style={styles.buttonContainer}>
                             <Button
-                                title="Login"
+                                title={isSignup ? 'Registrar' : 'Login'}
                                 color={Colors.primary}
-                                onPress={signupHandler}
+                                onPress={authHandler}
                             />
                         </View>
                         <View style={styles.buttonContainer}>
                             <Button
-                                title="Registrar"
+                                title={`Mudar para o modo ${isSignup ? 'Login' : 'Registrar'}`}
                                 color={Colors.secondary}
-                                onPress={() => {}}
+                                onPress={() => {
+                                    setIsSignup(prevState => !prevState);
+                                }}
                             />
                         </View>
                     </ScrollView>
