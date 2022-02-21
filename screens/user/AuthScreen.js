@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useCallback } from 'react';
-import { ScrollView, Button, KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import { ScrollView, Button, KeyboardAvoidingView, StyleSheet, View , ActivityIndicator} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
 
@@ -36,6 +36,7 @@ const formReducer = (state, action) => {
 
 const AuthScreen = props => {
     const [isSignup, setIsSignup] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -50,7 +51,7 @@ const AuthScreen = props => {
         formIsValid: false
     });
 
-    const authHandler = () => {
+    const authHandler = async () => {
         let action;
         if (isSignup) {
             action = authActions.signup(
@@ -64,7 +65,10 @@ const AuthScreen = props => {
                 formState.inputValues.password
             );
         }
-        dispatch(action);
+        console.log('Connecting...');
+        setIsLoading(true);
+        await dispatch(action);
+        setIsLoading(false);
     };
 
     const inputChangeHandler = useCallback(
@@ -111,11 +115,14 @@ const AuthScreen = props => {
                             initialValue='' 
                         />
                         <View style={styles.buttonContainer}>
+                            {isLoading ? (
+                                <ActivityIndicator size='small' color={Colors.primary} />
+                                ) : (
                             <Button
                                 title={isSignup ? 'Registrar' : 'Login'}
                                 color={Colors.primary}
                                 onPress={authHandler}
-                            />
+                            />)}
                         </View>
                         <View style={styles.buttonContainer}>
                             <Button
