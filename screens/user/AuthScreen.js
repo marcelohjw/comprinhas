@@ -1,5 +1,5 @@
-import React, { useState, useReducer, useCallback } from 'react';
-import { ScrollView, Button, KeyboardAvoidingView, StyleSheet, View , ActivityIndicator} from 'react-native';
+import React, { useState, useReducer, useCallback, useEffect } from 'react';
+import { ScrollView, Button, KeyboardAvoidingView, StyleSheet, View , ActivityIndicator, Alert} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
 
@@ -37,6 +37,7 @@ const formReducer = (state, action) => {
 const AuthScreen = props => {
     const [isSignup, setIsSignup] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
     const dispatch = useDispatch();
 
     const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -50,6 +51,12 @@ const AuthScreen = props => {
         },
         formIsValid: false
     });
+
+    useEffect(() => {
+        if (error) {
+          Alert.alert('Erro', error, [{ text: 'Ok' }]);
+        }
+      }, [error]);
 
     const authHandler = async () => {
         let action;
@@ -66,8 +73,13 @@ const AuthScreen = props => {
             );
         }
         console.log('Connecting...');
+        setError(null);
         setIsLoading(true);
-        await dispatch(action);
+        try {
+            await dispatch(action);
+        } catch (err) {
+            setError(err.message);
+        }
         setIsLoading(false);
     };
 

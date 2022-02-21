@@ -16,9 +16,17 @@ export const signup = (email, password) => {
                     returnSecureToken: true
                 })
             });
-        if (!response.ok) {
-            throw new Error('Algo deu errado!');
-        }
+
+            if (!response.ok) {
+                const errorResData = await response.json();
+                const errorId = errorResData.error.message;
+                let message = 'Algo deu errado!';
+    
+                if (errorId === 'EMAIL_EXISTS') {
+                    message = 'Esse email já está cadastrado!';
+                }
+                throw new Error(message);
+            }
 
         const resData = await response.json();
         console.log(resData);
@@ -42,7 +50,16 @@ export const login = (email, password) => {
                 })
             });
         if (!response.ok) {
-            throw new Error('Algo deu errado!');
+            const errorResData = await response.json();
+            const errorId = errorResData.error.message;
+            let message = 'Algo deu errado!';
+
+            if (errorId === 'EMAIL_NOT_FOUND') {
+                message = 'Esse email não está cadastrado!';
+            } else if (errorId === 'INVALID_PASSWORD') {
+                message = 'Senha inválida'
+            }
+            throw new Error(message);
         }
 
         const resData = await response.json();
