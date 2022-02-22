@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
+import { FlatList, View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeaderButton from '../../components/UI/HeaderButton';
@@ -25,6 +25,19 @@ const OrdersScreen = props => {
         return (
             <View style={styles.centered}>
                 <ActivityIndicator size={'large'} color={Colors.primary}/>
+            </View>
+        );
+    }
+
+    if(orders.length === 0) {
+        return (
+            <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Text>Nenhuma compra detectada</Text>
+                <Text>Tente comprar algum produto disponível</Text>
             </View>
         );
     }
