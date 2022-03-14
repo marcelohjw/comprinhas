@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, FlatList, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -104,7 +104,8 @@ const ProductsOverviewScreen = props => {
                         color={Colors.primary} 
                         title="Adicionar ao Carrinho" 
                         onPress={() => {
-                            dispatch(cartActions.add2Cart(itemData.item))
+                            Alert.alert('Produto adicionado ao carrinho!');
+                            dispatch(cartActions.add2Cart(itemData.item));
                         }}>
                     </Button>
                 </ProductItem>
